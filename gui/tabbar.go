@@ -380,9 +380,7 @@ func (tb *TabBar) update() {
 	tb.applyStyle(&tb.styles.Normal)
 }
 
-//
 // Tab describes an individual tab of the TabBar
-//
 type Tab struct {
 	tb         *TabBar    // Pointer to parent *TabBar
 	styles     *TabStyles // Pointer to Tab current styles
