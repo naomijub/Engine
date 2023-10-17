@@ -42,7 +42,10 @@ func App(width, height int, title string) *Application {
 		panic(err)
 	}
 	a.IWindow = window.Get()
-	a.openDefaultAudioDevice()         // Set up audio
+	audioErr := a.openDefaultAudioDevice() // Set up audio
+	if audioErr != nil {
+		panic(fmt.Errorf("openDefaultAudioDevice:%v", audioErr))
+	}
 	a.keyState = window.NewKeyState(a) // Create KeyState
 	// Create renderer and add default shaders
 	a.renderer = renderer.NewRenderer(a.Gls())
@@ -87,7 +90,9 @@ func (a *Application) Run(update func(rend *renderer.Renderer, deltaTime time.Du
 
 	// Close default audio device
 	if a.audioDev != nil {
-		al.CloseDevice(a.audioDev)
+		if err := al.CloseDevice(a.audioDev); err != nil {
+			panic(fmt.Errorf("CloseDevice:%v", err))
+		}
 	}
 	// Destroy window
 	a.Destroy()
