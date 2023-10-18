@@ -22,7 +22,9 @@ jobs:
           go-version: '1.21'
           cache: false
       - name: Deps
-        run: sudo apt-get install xorg-dev libgl1-mesa-dev libopenal1 libopenal-dev libvorbis0a libvorbis-dev libvorbisfile3
+        run:  |
+          sudo apt-get update -y
+          sudo apt-get install -y xorg-dev libgl1-mesa-dev libopenal1 libopenal-dev libvorbis0a libvorbis-dev libvorbisfile3
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
@@ -46,7 +48,9 @@ jobs:
           go-version: ${{ matrix.go-version }}
       - name: Deps Ubuntu
         if: ${{ matrix.os }} == 'ubuntu-latest'
-        run: sudo apt-get install xorg-dev libgl1-mesa-dev libopenal1 libopenal-dev libvorbis0a libvorbis-dev libvorbisfile3
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y xorg-dev libgl1-mesa-dev libopenal1 libopenal-dev libvorbis0a libvorbis-dev libvorbisfile3
       - name: Deps Macos  
         if: ${{ matrix.os }} == 'macos-latest'
         run: brew install libvorbis openal-soft
@@ -63,6 +67,8 @@ jobs:
         with:
             go-version: '1.21'
       - name: Deps
-        run: sudo apt-get install xorg-dev libgl1-mesa-dev libopenal1 libopenal-dev libvorbis0a libvorbis-dev libvorbisfile3      
+        run:  |
+          sudo apt-get update -y
+          sudo apt-get install -y xorg-dev libgl1-mesa-dev libopenal1 libopenal-dev libvorbis0a libvorbis-dev libvorbisfile3
       - name: FMT
         run: go fmt ./...
