@@ -63,7 +63,7 @@ func ShowPenAxis(scene *core.Node, axis *math32.Vector3) { //}, min, max float32
 	geom := geometry.NewGeometry()
 	geom.AddVBO(gls.NewVBO(vertices).AddAttrib(gls.VertexPosition))
 
-	mat := material.NewStandard(&math32.Color{1, 1, 1})
+	mat := material.NewStandard(&math32.Color{R: 1, G: 1, B: 1})
 	faceGraphic := graphic.NewLines(geom, mat)
 	scene.Add(faceGraphic)
 }
@@ -86,7 +86,7 @@ func ShowContact(scene *core.Node, contact *collision.Contact) {
 	geom := geometry.NewGeometry()
 	geom.AddVBO(gls.NewVBO(vertices).AddAttrib(gls.VertexPosition))
 
-	mat := material.NewStandard(&math32.Color{0, 0, 1})
+	mat := material.NewStandard(&math32.Color{R: 0, G: 0, B: 1})
 	faceGraphic := graphic.NewLines(geom, mat)
 	scene.Add(faceGraphic)
 }

@@ -36,7 +36,7 @@ func (s *Sphere) Radius() float32 {
 // BoundingBox computes and returns the bounding box of the analytical collision sphere.
 func (s *Sphere) BoundingBox() math32.Box3 {
 
-	return math32.Box3{math32.Vector3{-s.radius, -s.radius, -s.radius}, math32.Vector3{s.radius, s.radius, s.radius}}
+	return math32.Box3{Min: math32.Vector3{X: -s.radius, Y: -s.radius, Z: -s.radius}, Max: math32.Vector3{X: s.radius, Y: s.radius, Z: s.radius}}
 }
 
 // BoundingSphere computes and returns the bounding sphere of the analytical collision sphere.
@@ -48,19 +48,19 @@ func (s *Sphere) BoundingSphere() math32.Sphere {
 // Area computes and returns the surface area of the analytical collision sphere.
 func (s *Sphere) Area() float32 {
 
-	return 4 * math32.Pi * s.radius * s.radius
+	return 4. * math32.Pi * s.radius * s.radius
 }
 
 // Volume computes and returns the volume of the analytical collision sphere.
 func (s *Sphere) Volume() float32 {
 
-	return (4 / 3) * math32.Pi * s.radius * s.radius * s.radius
+	return (4. / 3.) * math32.Pi * s.radius * s.radius * s.radius
 }
 
 // RotationalInertia computes and returns the rotational inertia of the analytical collision sphere.
 func (s *Sphere) RotationalInertia(mass float32) math32.Matrix3 {
 
-	v := (2 / 5) * mass * s.radius * s.radius
+	v := (2. / 5.) * mass * s.radius * s.radius
 	return *math32.NewMatrix3().Set(
 		v, 0, 0,
 		0, v, 0,

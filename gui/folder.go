@@ -108,8 +108,7 @@ func (f *Folder) SetAlignRight(state bool) {
 // Height returns this folder total height
 // considering the contents panel, if visible.
 func (f *Folder) Height() float32 {
-
-	height := f.Height()
+	height := f.content.Height
 	if f.contentPanel.GetPanel().Visible() {
 		height += f.contentPanel.GetPanel().Height()
 	}

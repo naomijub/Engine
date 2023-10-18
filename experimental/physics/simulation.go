@@ -56,7 +56,8 @@ type Simulation struct {
 	//defaultMaterial *Material
 	defaultContactMaterial *ContactMaterial
 
-	doProfiling bool
+	// TODO: Add profiling action
+	// doProfiling bool
 }
 
 // NewSimulation creates and returns a pointer to a new physics simulation.
@@ -65,7 +66,7 @@ func NewSimulation(scene *core.Node) *Simulation {
 	s := new(Simulation)
 	s.time = 0
 	s.dt = -1
-	s.default_dt = 1 / 60
+	s.default_dt = 1. / 60.
 	s.scene = scene
 
 	// Set up broadphase, narrowphase, and solver
@@ -279,17 +280,15 @@ func (s *Simulation) AddContactMaterial(cmat *ContactMaterial) {
 // GetContactMaterial returns the contact material between the specified bodies.
 func (s *Simulation) GetContactMaterial(bodyA, bodyB *object.Body) *ContactMaterial {
 
-	var cm *ContactMaterial
 	// TODO
 	//if bodyA.material != nil && bodyB.material != nil {
-	//	cm = s.contactMaterialTable.get(bodyA.material.id, bodyB.material.id)
+	//	cm := s.contactMaterialTable.get(bodyA.material.id, bodyB.material.id)
 	//	if cm == nil {
 	//		cm = s.defaultContactMaterial
 	//	}
 	//} else {
-	cm = s.defaultContactMaterial
+	return s.defaultContactMaterial
 	//}
-	return cm
 }
 
 // Events =====================
@@ -563,7 +562,7 @@ func (s *Simulation) updateSleepAndCollisionMatrix(contactEq *equation.Contact) 
 	// Now we know that i and j are in contact. Set collision matrix state
 	s.collisionMatrix.Set(bodyA.Index(), bodyB.Index(), true)
 
-	if s.prevCollisionMatrix.Get(bodyA.Index(), bodyB.Index()) == false {
+	if !s.prevCollisionMatrix.Get(bodyA.Index(), bodyB.Index()) {
 		// First contact!
 		bodyA.Dispatch(CollisionEv, &CollideEvent{bodyB, contactEq})
 		bodyB.Dispatch(CollisionEv, &CollideEvent{bodyA, contactEq})

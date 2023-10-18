@@ -39,17 +39,17 @@ func NewDarkStyle() *Style {
 	oneBounds := RectBounds{1, 1, 1, 1}
 	twoBounds := RectBounds{2, 2, 2, 2}
 
-	s.Color.BgDark = math32.Color4{43.0 / 256.0, 43.0 / 256.0, 43.0 / 256.0, 1}
-	s.Color.BgMed = math32.Color4{49.0 / 256.0, 51.0 / 256.0, 53.0 / 256.0, 1}
-	s.Color.BgNormal = math32.Color4{60.0 / 256.0, 63.0 / 256.0, 65.0 / 256.0, 1}
-	s.Color.BgOver = math32.Color4{70.0 / 256.0, 74.0 / 256.0, 77.0 / 256.0, 1}
-	s.Color.Highlight = math32.Color4{75.0 / 256.0, 110.0 / 256.0, 175.0 / 256.0, 1}
-	s.Color.Select = math32.Color4{13.0 / 256.0, 41.0 / 256.0, 62.0 / 256.0, 1}
-	s.Color.Text = math32.Color4{1, 1, 1, 1}
-	s.Color.TextDis = math32.Color4{0.4, 0.4, 0.4, 1}
+	s.Color.BgDark = math32.Color4{R: 43.0 / 256.0, G: 43.0 / 256.0, B: 43.0 / 256.0, A: 1}
+	s.Color.BgMed = math32.Color4{R: 49.0 / 256.0, G: 51.0 / 256.0, B: 53.0 / 256.0, A: 1}
+	s.Color.BgNormal = math32.Color4{R: 60.0 / 256.0, G: 63.0 / 256.0, B: 65.0 / 256.0, A: 1}
+	s.Color.BgOver = math32.Color4{R: 70.0 / 256.0, G: 74.0 / 256.0, B: 77.0 / 256.0, A: 1}
+	s.Color.Highlight = math32.Color4{R: 75.0 / 256.0, G: 110.0 / 256.0, B: 175.0 / 256.0, A: 1}
+	s.Color.Select = math32.Color4{R: 13.0 / 256.0, G: 41.0 / 256.0, B: 62.0 / 256.0, A: 1}
+	s.Color.Text = math32.Color4{R: 1, G: 1, B: 1, A: 1}
+	s.Color.TextDis = math32.Color4{R: 0.4, G: 0.4, B: 0.4, A: 1}
 
 	borderColor := s.Color.BgDark
-	transparent := math32.Color4{0, 0, 0, 0}
+	transparent := math32.Color4{R: 0, G: 0, B: 0, A: 0}
 
 	//bgColorBlue := math32.Color4{59.0/256.0, 71.0/256.0, 84.0/256.0, 1}
 	//bgColorBlue2 := math32.Color4{59.0/256.0, 71.0/256.0, 120.0/256.0, 1}
@@ -65,8 +65,8 @@ func NewDarkStyle() *Style {
 	s.Label.FontAttributes.DPI = 72
 	s.Label.FontAttributes.Hinting = text.HintingNone
 	s.Label.FontAttributes.LineSpacing = 1.0
-	s.Label.BgColor = math32.Color4{1, 1, 1, 0}
-	s.Label.FgColor = math32.Color4{1, 1, 1, 1}
+	s.Label.BgColor = math32.Color4{R: 1, G: 1, B: 1, A: 0}
+	s.Label.FgColor = math32.Color4{R: 1, G: 1, B: 1, A: 1}
 
 	// Button styles
 	s.Button = ButtonStyles{}
@@ -107,7 +107,7 @@ func NewDarkStyle() *Style {
 		BgColor:     s.Color.BgMed,
 		BgAlpha:     1.0,
 		FgColor:     s.Color.Text,
-		HolderColor: math32.Color4{0.4, 0.4, 0.4, 1},
+		HolderColor: math32.Color4{R: 0.4, G: 0.4, B: 0.4, A: 1},
 	}
 	s.Edit.Over = s.Edit.Normal
 	s.Edit.Over.BgColor = s.Color.BgNormal
@@ -119,10 +119,10 @@ func NewDarkStyle() *Style {
 	s.ScrollBar = ScrollBarStyles{}
 	s.ScrollBar.Normal = ScrollBarStyle{}
 	s.ScrollBar.Normal.Padding = oneBounds
-	s.ScrollBar.Normal.BgColor = math32.Color4{0, 0, 0, 0.2}
+	s.ScrollBar.Normal.BgColor = math32.Color4{R: 0, G: 0, B: 0, A: 0.2}
 	s.ScrollBar.Normal.ButtonLength = 32
 	s.ScrollBar.Normal.Button = PanelStyle{
-		BgColor: math32.Color4{0.8, 0.8, 0.8, 0.5},
+		BgColor: math32.Color4{R: 0.8, G: 0.8, B: 0.8, A: 0.5},
 	}
 	s.ScrollBar.Over = s.ScrollBar.Normal
 	s.ScrollBar.Disabled = s.ScrollBar.Normal
@@ -160,7 +160,7 @@ func NewDarkStyle() *Style {
 	s.Window.Normal.BorderColor = s.Color.BgDark
 	s.Window.Normal.TitleStyle = WindowTitleStyle{}
 	s.Window.Normal.TitleStyle.Border = RectBounds{0, 0, 1, 0}
-	s.Window.Normal.TitleStyle.BorderColor = math32.Color4{0, 0, 0, 1}
+	s.Window.Normal.TitleStyle.BorderColor = math32.Color4{R: 0, G: 0, B: 0, A: 1}
 	s.Window.Normal.TitleStyle.BgColor = s.Color.Select
 	s.Window.Normal.TitleStyle.FgColor = s.Color.Text
 	s.Window.Over = s.Window.Normal
@@ -180,7 +180,7 @@ func NewDarkStyle() *Style {
 	s.Scroller.ScrollbarInterlocking = ScrollbarInterlockingNone
 	s.Scroller.CornerCovered = true
 	s.Scroller.CornerPanel = PanelStyle{}
-	s.Scroller.CornerPanel.BgColor = math32.Color4{0, 0, 0, 0.2}
+	s.Scroller.CornerPanel.BgColor = math32.Color4{R: 0, G: 0, B: 0, A: 0.2}
 	s.Scroller.Border = oneBounds
 	s.Scroller.BorderColor = borderColor
 	s.Scroller.BgColor = s.Color.BgNormal
@@ -204,7 +204,7 @@ func NewDarkStyle() *Style {
 	s.List.Item.Normal = ListItemStyle{}
 	s.List.Item.Normal.Border = RectBounds{0, 0, 1, 0}
 	s.List.Item.Normal.Padding = RectBounds{0, 0, 0, 2}
-	s.List.Item.Normal.BorderColor = math32.Color4{0, 0, 0, 0}
+	s.List.Item.Normal.BorderColor = math32.Color4{R: 0, G: 0, B: 0, A: 0}
 	s.List.Item.Normal.BgColor = transparent
 	s.List.Item.Normal.FgColor = s.Color.Text
 	s.List.Item.Over = s.List.Item.Normal
@@ -214,7 +214,7 @@ func NewDarkStyle() *Style {
 	s.List.Item.Selected.BgColor = s.Color.Highlight
 	s.List.Item.Selected.FgColor = s.Color.Select
 	s.List.Item.Highlighted = s.List.Item.Normal
-	s.List.Item.Highlighted.BorderColor = math32.Color4{0, 0, 0, 1}
+	s.List.Item.Highlighted.BorderColor = math32.Color4{R: 0, G: 0, B: 0, A: 1}
 	s.List.Item.Highlighted.BgColor = s.Color.BgOver
 	s.List.Item.Highlighted.FgColor = s.Color.Text
 	s.List.Item.SelHigh = s.List.Item.Highlighted
@@ -264,8 +264,8 @@ func NewDarkStyle() *Style {
 	s.ControlFolder = ControlFolderStyles{}
 	s.ControlFolder.Folder = &FolderStyles{}
 	s.ControlFolder.Folder.Normal = s.Folder.Normal
-	s.ControlFolder.Folder.Normal.BorderColor = math32.Color4{0, 0, 0, 0}
-	s.ControlFolder.Folder.Normal.BgColor = math32.Color4{0, 0.5, 1, 1}
+	s.ControlFolder.Folder.Normal.BorderColor = math32.Color4{R: 0, G: 0, B: 0, A: 0}
+	s.ControlFolder.Folder.Normal.BgColor = math32.Color4{R: 0, G: 0.5, B: 1, A: 1}
 	s.ControlFolder.Folder.Over = s.ControlFolder.Folder.Normal
 	s.ControlFolder.Folder.Focus = s.ControlFolder.Folder.Normal
 	s.ControlFolder.Folder.Focus.Padding = twoBounds
@@ -312,8 +312,8 @@ func NewDarkStyle() *Style {
 	s.Menu.Item.Separator = MenuItemStyle{}
 	s.Menu.Item.Separator.Border = twoBounds
 	s.Menu.Item.Separator.Padding = zeroBounds
-	s.Menu.Item.Separator.BorderColor = math32.Color4{0, 0, 0, 0}
-	s.Menu.Item.Separator.BgColor = math32.Color4{0.6, 0.6, 0.6, 1}
+	s.Menu.Item.Separator.BorderColor = math32.Color4{R: 0, G: 0, B: 0, A: 0}
+	s.Menu.Item.Separator.BgColor = math32.Color4{R: 0.6, G: 0.6, B: 0.6, A: 1}
 	s.Menu.Item.Separator.FgColor = s.Color.Text
 
 	// Table styles
@@ -346,7 +346,7 @@ func NewDarkStyle() *Style {
 		Width:       4,
 		Border:      zeroBounds,
 		BorderColor: borderColor,
-		BgColor:     math32.Color4{0.4, 0.4, 0.4, 0.6},
+		BgColor:     math32.Color4{R: 0.4, G: 0.4, B: 0.4, A: 0.6},
 	}
 
 	// ImageButton styles

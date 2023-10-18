@@ -181,7 +181,7 @@ func (p *Panel) Initialize(ipan IPanel, width, height float32) { // TODO rename 
 	p.uniPanel.Init("Panel")
 
 	// Set defaults
-	p.udata.bordersColor = math32.Color4{0, 0, 0, 1}
+	p.udata.bordersColor = math32.Color4{R: 0, G: 0, B: 0, A: 1}
 	p.bounded = true
 	p.enabled = true
 	p.resize(width, height, true)
@@ -199,7 +199,7 @@ func (p *Panel) InitializeGraphic(width, height float32, gr *graphic.Graphic) {
 	p.uniPanel.Init("Panel")
 
 	// Set defaults
-	p.udata.bordersColor = math32.Color4{0, 0, 0, 1}
+	p.udata.bordersColor = math32.Color4{R: 0, G: 0, B: 0, A: 1}
 	p.bounded = true
 	p.enabled = true
 	p.resize(width, height, true)
@@ -397,7 +397,7 @@ func (p *Panel) Paddings() RectBounds {
 // The borders opacity is set to 1.0 (full opaque)
 func (p *Panel) SetBordersColor(color *math32.Color) {
 
-	p.udata.bordersColor = math32.Color4{color.R, color.G, color.B, 1}
+	p.udata.bordersColor = math32.Color4{R: color.R, G: color.G, B: color.B, A: 1}
 	p.SetChanged(true)
 }
 
@@ -417,14 +417,14 @@ func (p *Panel) BordersColor4() math32.Color4 {
 // SetPaddingsColor sets the color of this panel paddings.
 func (p *Panel) SetPaddingsColor(color *math32.Color) {
 
-	p.udata.paddingsColor = math32.Color4{color.R, color.G, color.B, 1}
+	p.udata.paddingsColor = math32.Color4{R: color.R, G: color.G, B: color.B, A: 1}
 	p.SetChanged(true)
 }
 
 // SetColor sets the color of the panel paddings and content area
 func (p *Panel) SetColor(color *math32.Color) *Panel {
 
-	p.udata.paddingsColor = math32.Color4{color.R, color.G, color.B, 1}
+	p.udata.paddingsColor = math32.Color4{R: color.R, G: color.G, B: color.B, A: 1}
 	p.udata.contentColor = p.udata.paddingsColor
 	p.SetChanged(true)
 	return p
@@ -690,7 +690,7 @@ func (p *Panel) updateBounds(par *Panel) {
 	p.xmax = p.pospix.X + p.width
 	p.ymax = p.pospix.Y + p.height
 	// Set default bounds to be entire panel texture
-	p.udata.bounds = math32.Vector4{0, 0, 1, 1}
+	p.udata.bounds = math32.Vector4{X: 0, Y: 0, Z: 1, W: 1}
 	// If this panel has no parent or is unbounded then the default bounds are correct
 	if par == nil || !p.bounded {
 		return
@@ -809,24 +809,24 @@ func (p *Panel) resize(width, height float32, dispatch bool) {
 
 	// Update border uniform in texture coordinates (0,0 -> 1,1)
 	p.udata.borders = math32.Vector4{
-		float32(border.X) / float32(p.width),
-		float32(border.Y) / float32(p.height),
-		float32(border.Width) / float32(p.width),
-		float32(border.Height) / float32(p.height),
+		X: float32(border.X) / float32(p.width),
+		Y: float32(border.Y) / float32(p.height),
+		Z: float32(border.Width) / float32(p.width),
+		W: float32(border.Height) / float32(p.height),
 	}
 	// Update padding uniform in texture coordinates (0,0 -> 1,1)
 	p.udata.paddings = math32.Vector4{
-		float32(padding.X) / float32(p.width),
-		float32(padding.Y) / float32(p.height),
-		float32(padding.Width) / float32(p.width),
-		float32(padding.Height) / float32(p.height),
+		X: float32(padding.X) / float32(p.width),
+		Y: float32(padding.Y) / float32(p.height),
+		Z: float32(padding.Width) / float32(p.width),
+		W: float32(padding.Height) / float32(p.height),
 	}
 	// Update content uniform in texture coordinates (0,0 -> 1,1)
 	p.udata.content = math32.Vector4{
-		float32(p.content.X) / float32(p.width),
-		float32(p.content.Y) / float32(p.height),
-		float32(p.content.Width) / float32(p.width),
-		float32(p.content.Height) / float32(p.height),
+		X: float32(p.content.X) / float32(p.width),
+		Y: float32(p.content.Y) / float32(p.height),
+		Z: float32(p.content.Width) / float32(p.width),
+		W: float32(p.content.Height) / float32(p.height),
 	}
 	p.SetChanged(true) // TODO necessary?
 

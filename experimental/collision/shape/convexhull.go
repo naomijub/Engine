@@ -142,7 +142,7 @@ func (ch *ConvexHull) FindPenetrationAxis(chB *ConvexHull, posA, posB *math32.Ve
 
 	// Assume the geometries are penetrating.
 	// As soon as (and if) we figure out that they are not, then return false.
-	penetrating := true
+	var penetrating bool
 
 	worldFaceNormalsA := ch.WorldFaceNormals()
 	worldFaceNormalsB := ch.WorldFaceNormals()

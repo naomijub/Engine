@@ -348,7 +348,7 @@ func (n *Narrowphase) SphereConvex(bodyA, bodyB *object.Body, sphereA *shape.Sph
 			worldFace := convexB.WorldFace(face, posB, quatB)
 			if n.pointBehindFace(worldFace, &worldNormal, posA) { // Is the sphere center behind the face (inside the convex polygon?
 				// TODO NEVER GETTING INSIDE THIS IF STATEMENT!
-				ShowWorldFace(n.simulation.Scene(), worldFace[:], &math32.Color{0, 0, 2})
+				ShowWorldFace(n.simulation.Scene(), worldFace[:], &math32.Color{R: 0, G: 0, B: 2})
 
 				// if justTest {
 				//    return true

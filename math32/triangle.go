@@ -145,7 +145,7 @@ func (t *Triangle) Midpoint(optionalTarget *Vector3) *Vector3 {
 	} else {
 		result = NewVector3(0, 0, 0)
 	}
-	return result.AddVectors(&t.a, &t.b).Add(&t.c).MultiplyScalar(1 / 3)
+	return result.AddVectors(&t.a, &t.b).Add(&t.c).MultiplyScalar(1. / 3.)
 }
 
 // Normal returns the triangle's normal.

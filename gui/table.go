@@ -594,7 +594,7 @@ func (t *Table) Rows(fi, li int) []map[string]interface{} {
 	if li < fi {
 		panic("Last index less than first index")
 	}
-	res := make([]map[string]interface{}, li-li+1)
+	res := make([]map[string]interface{}, 1)
 	for ri := fi; ri <= li; ri++ {
 		trow := t.rows[ri]
 		rmap := make(map[string]interface{})
@@ -909,7 +909,7 @@ func (t *Table) onScroll(evname string, ev interface{}) {
 // onRicon receives subscribed events for column header right icon
 func (t *Table) onRicon(evname string, c *tableColHeader) {
 
-	ico := tableSortedNoneIcon
+	ico := ""
 	var asc bool
 	if c.sorted == tableSortedNone || c.sorted == tableSortedDesc {
 		c.sorted = tableSortedAsc

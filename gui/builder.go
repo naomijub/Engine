@@ -6,7 +6,7 @@ package gui
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"sort"
 	"strconv"
@@ -405,7 +405,7 @@ func (b *Builder) ParseFile(filepath string) error {
 	if err != nil {
 		return err
 	}
-	data, err := ioutil.ReadAll(f)
+	data, err := io.ReadAll(f)
 	if err != nil {
 		return err
 	}
@@ -879,7 +879,7 @@ func AttribCheckIcons(b *Builder, am map[string]interface{}, fname string) error
 		if err != nil {
 			return b.err(am, fname, fmt.Sprintf("Invalid icon codepoint value/name:%v", parts[i]))
 		}
-		text += string(val)
+		text += string(rune(val))
 	}
 	am[fname] = text
 	return nil
@@ -914,7 +914,7 @@ func AttribCheckColor(b *Builder, am map[string]interface{}, fname string) error
 		if !ok {
 			return b.err(am, fname, fmt.Sprintf("Invalid color name:%s", parts[0]))
 		}
-		c4 := math32.Color4{c.R, c.G, c.B, 1}
+		c4 := math32.Color4{R: c.R, G: c.G, B: c.B, A: 1}
 		if len(parts) == 2 {
 			val, err := strconv.ParseFloat(parts[1], 32)
 			if err != nil {
@@ -932,10 +932,10 @@ func AttribCheckColor(b *Builder, am map[string]interface{}, fname string) error
 		return err
 	}
 	if len(va) == 3 {
-		am[fname] = &math32.Color4{va[0], va[1], va[2], 1}
+		am[fname] = &math32.Color4{R: va[0], G: va[1], B: va[2], A: 1}
 		return nil
 	}
-	am[fname] = &math32.Color4{va[0], va[1], va[2], va[3]}
+	am[fname] = &math32.Color4{R: va[0], G: va[1], B: va[2], A: va[3]}
 	return nil
 }
 
