@@ -33,6 +33,7 @@ jobs:
         # When `install-mode` is `goinstall` the value can be v1.2.3, `latest`, or the hash of a commit.
           version: 'latest'
           install-mode: "goinstall"
+          args: --exclude unused
 
   build-ubuntu:
     strategy:

@@ -204,14 +204,10 @@ func (b *ImageButton) onKey(evname string, ev interface{}) {
 		b.pressed = true
 		b.update()
 		b.Dispatch(OnClick, nil)
-		return
-	}
-	if evname == OnKeyUp && kev.Key == window.KeyEnter {
+	} else if evname == OnKeyUp && kev.Key == window.KeyEnter {
 		b.pressed = false
 		b.update()
-		return
 	}
-	return
 }
 
 // update updates the button visual state

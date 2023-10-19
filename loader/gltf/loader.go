@@ -13,7 +13,6 @@ import (
 	"image"
 	"image/draw"
 	"io"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -438,9 +437,8 @@ func (g *GLTF) LoadMesh(meshIdx int) (core.INode, error) {
 	meshData := g.Meshes[meshIdx]
 	// Return cached if available
 	if meshData.cache != nil {
-		// TODO CLONE/REINSTANCE INSTEAD
-		//log.Debug("Instancing Mesh %d (from cached)", meshIdx)
-		//return meshData.cache, nil
+		log.Debug("Instancing Mesh %d (from cached)", meshIdx)
+		return meshData.cache.Clone(), nil
 	}
 	log.Debug("Loading Mesh %d", meshIdx)
 
@@ -463,10 +461,11 @@ func (g *GLTF) LoadMesh(meshIdx int) (core.INode, error) {
 				return nil, err
 			}
 			indices = append(indices, pidx...)
-		} else {
-			// Non-indexed primitive
-			// indices array stay empty
 		}
+		// else {
+		// 	// Non-indexed primitive
+		// 	// indices array stay empty
+		// }
 
 		// Load primitive material
 		var grMat material.IMaterial
@@ -690,7 +689,7 @@ func (g *GLTF) validateAccessor(ac Accessor, usage string, validTypes []string, 
 // newDefaultMaterial creates and returns the default material.
 func (g *GLTF) newDefaultMaterial() material.IMaterial {
 
-	return material.NewStandard(&math32.Color{0.5, 0.5, 0.5})
+	return material.NewStandard(&math32.Color{R: 0.5, G: 0.5, B: 0.5})
 }
 
 // LoadMaterial creates and returns a new material based on the material data with the specified index.
@@ -1118,7 +1117,7 @@ func (g *GLTF) loadFileBytes(uri string) ([]byte, error) {
 		return nil, err
 	}
 	defer f.Close()
-	data, err := ioutil.ReadAll(f)
+	data, err := io.ReadAll(f)
 	if err != nil {
 		return nil, err
 	}

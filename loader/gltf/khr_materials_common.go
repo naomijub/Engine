@@ -113,10 +113,10 @@ func (g *GLTF) loadMaterialCommon(ext interface{}) (material.IMaterial, error) {
 	//log.Error("shininess:%v", shininess)
 	//log.Error("transparency:%v", transparency)
 
-	mat := material.NewStandard(&math32.Color{diffuse[0], diffuse[1], diffuse[2]})
-	mat.SetAmbientColor(&math32.Color{ambient[0], ambient[1], ambient[2]})
-	mat.SetEmissiveColor(&math32.Color{emission[0], emission[1], emission[2]})
-	mat.SetSpecularColor(&math32.Color{specular[0], specular[1], specular[2]})
+	mat := material.NewStandard(&math32.Color{R: diffuse[0], G: diffuse[1], B: diffuse[2]})
+	mat.SetAmbientColor(&math32.Color{R: ambient[0], G: ambient[1], B: ambient[2]})
+	mat.SetEmissiveColor(&math32.Color{R: emission[0], G: emission[1], B: emission[2]})
+	mat.SetSpecularColor(&math32.Color{R: specular[0], G: specular[1], B: specular[2]})
 	mat.SetShininess(shininess)
 	mat.SetOpacity(transparency)
 	if texDiffuse != nil {

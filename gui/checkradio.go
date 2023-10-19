@@ -200,9 +200,7 @@ func (cb *CheckRadio) onKey(evname string, ev interface{}) {
 		cb.toggleState()
 		cb.update()
 		cb.Dispatch(OnClick, nil)
-		return
 	}
-	return
 }
 
 // onRadioGroup receives subscribed OnRadioGroup events
