@@ -12,18 +12,18 @@ import (
 // NewBoard creates and returns a pointer to a new checker board 2D texture.
 // A checker board texture contains up to 4 different colors arranged in
 // the following order:
-//  +------+------+
-//  |      |      |
-//  |  c3  |  c4  |
-//  |      |      |
-//  +------+------+
-//  |      |      |
-//  |  c1  |  c2  | height (pixels)
-//  |      |      |
-//  +------+------+
-//    width
-//  (pixels)
 //
+//	+------+------+
+//	|      |      |
+//	|  c3  |  c4  |
+//	|      |      |
+//	+------+------+
+//	|      |      |
+//	|  c1  |  c2  | height (pixels)
+//	|      |      |
+//	+------+------+
+//	  width
+//	(pixels)
 func NewBoard(width, height int, c1, c2, c3, c4 *math32.Color, alpha float32) *Texture2D {
 
 	// Generates texture data

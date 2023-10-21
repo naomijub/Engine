@@ -136,7 +136,7 @@ func (p *Player) Play() error {
 	// Starts playing and starts goroutine to fill buffers
 	al.SourcePlay(p.source)
 	go p.run()
-	
+
 	return nil
 }
 
