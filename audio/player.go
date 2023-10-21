@@ -3,7 +3,6 @@
 // license that can be found in the LICENSE file.
 
 //go:build !wasm
-// +build !wasm
 
 package audio
 
@@ -136,7 +135,7 @@ func (p *Player) Play() error {
 	// Starts playing and starts goroutine to fill buffers
 	al.SourcePlay(p.source)
 	go p.run()
-	
+
 	return nil
 }
 

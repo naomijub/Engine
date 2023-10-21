@@ -56,10 +56,8 @@ const (
 	tableErrInvCol      = "Invalid column id"
 )
 
-//
 // Table implements a panel which can contains child panels
 // organized in rows and columns.
-//
 type Table struct {
 	Panel                       // Embedded panel
 	styles         *TableStyles // pointer to current styles

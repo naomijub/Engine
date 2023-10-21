@@ -3,7 +3,6 @@
 // license that can be found in the LICENSE file.
 
 //go:build wasm
-// +build wasm
 
 package gls
 
@@ -736,7 +735,7 @@ func (gs *GLS) Uniform4f(location int32, v0, v1, v2, v3 float32) {
 	gs.stats.Unisets++
 }
 
-//// UniformMatrix3fv sets the value of one or many 3x3 float matrices for the current program object.
+// // UniformMatrix3fv sets the value of one or many 3x3 float matrices for the current program object.
 func (gs *GLS) UniformMatrix3fv(location int32, count int32, transpose bool, pm *float32) {
 
 	data := (*[1 << 30]float32)(unsafe.Pointer(pm))[:9*count]

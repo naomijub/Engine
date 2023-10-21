@@ -145,7 +145,7 @@ func DecodeReader(objreader, mtlreader io.Reader) (*Decoder, error) {
 		return nil, err
 	}
 
-	if (mtlreader != nil) {
+	if mtlreader != nil {
 		// Parses mtl lines
 		// 1) try passed in mtlreader,
 		// 2) try file in mtllib line
