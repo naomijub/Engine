@@ -83,4 +83,4 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y xorg-dev libgl1-mesa-dev libopenal1 libopenal-dev libvorbis0a libvorbis-dev libvorbisfile3
       - name: FMT
-        run: test -z $(gofmt -l .) 
+        run: gofmt -d .
