@@ -10,10 +10,9 @@ import "github.com/g3n/engine/math32"
 type ForceField interface {
 	ForceAt(pos *math32.Vector3) math32.Vector3
 }
-//
+
 // ConstantForceField is a constant force field.
 // It can be used to simulate surface gravity.
-//
 type ConstantForceField struct {
 	force math32.Vector3
 }
